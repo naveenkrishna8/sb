@@ -3,7 +3,9 @@
     * Template Name: Pricing template
     */
 ?>  
+
 <?php get_header(); ?>
+<script src="https://js.recurly.com/v4/recurly.js"></script>
 <div class="custom-main">
 
 <?php while ( have_posts() ) : the_post(); ?>
@@ -125,92 +127,74 @@
 					</div>
 					<div class="payment-body">
 						<p class="text-center">Start using Salesboost now! Fill out the form below with your payment information and start using Salesboost today:</p>
-						<form>
+						<form id="payment-from" method="POST">
 							<div class="flex-wrapper">
 								<div class="payment-info">
 									<div class="input-row-2">
 										<div class="input-wrap">
-											<input type="text" placeholder="First Name">
+											<input type="text" name="FirstName" placeholder="First Name" data-recurly="first_name" required>
 											<span class="required">*</span>
 										</div>
 										<div class="input-wrap">
-											<input type="text" placeholder="Last Name">
-											<span class="required">*</span>
-										</div>
-									</div>
-									<div class="input-row-1">
-										<div class="input-wrap">
-											<input type="email" placeholder="Email">
+											<input type="text" placeholder="Last Name" name="LastName" data-recurly="last_name" required>
 											<span class="required">*</span>
 										</div>
 									</div>
 									<div class="input-row-1">
 										<div class="input-wrap">
-											<input type="text" placeholder="Name for account">
+											<input type="email" name="Email" placeholder="Email" required>
 											<span class="required">*</span>
 										</div>
 									</div>
 									<div class="input-row-1">
 										<div class="input-wrap">
-											<input type="text" placeholder="Phone number">
-										</div>
-									</div>
-									<div class="input-row-1">
-										<div class="input-wrap">
-											<input type="text" placeholder="Street address">
+											<input type="text" name="AccountName" placeholder="Name for account" required>
 											<span class="required">*</span>
 										</div>
 									</div>
 									<div class="input-row-1">
 										<div class="input-wrap">
-											<input type="text" placeholder="Unit/Apartment/Building Number">
+											<input type="text" name="phoneNumber" placeholder="Phone number" data-recurly="phone">
+										</div>
+									</div>
+									<div class="input-row-1">
+										<div class="input-wrap">
+											<input type="text" name="address1" placeholder="Street address" data-recurly="address1" required>
 											<span class="required">*</span>
 										</div>
 									</div>
 									<div class="input-row-1">
 										<div class="input-wrap">
-											<input type="text" placeholder="City">
+											<input type="text" name="address2" placeholder="Unit/Apartment/Building Number" data-recurly="address2">
 											<span class="required">*</span>
 										</div>
 									</div>
 									<div class="input-row-1">
 										<div class="input-wrap">
-											<input type="text" placeholder="State">
+											<input type="text" name="city" placeholder="City" data-recurly="city" required>
 											<span class="required">*</span>
 										</div>
 									</div>
 									<div class="input-row-1">
 										<div class="input-wrap">
-											<input type="text" placeholder="Postal code">
+											<input type="text" name="state" placeholder="State" data-recurly="state" required>
+											<span class="required">*</span>
+										</div>
+									</div>
+									<div class="input-row-1">
+										<div class="input-wrap">
+											<input type="text" placeholder="Postal code" data-recurly="postal_code" required>
 											<span class="required">*</span>
 										</div>
 									</div>
 								</div>
+								<!-- cc-payment-info-->
 								<div class="cc-payment-info">
-									<div class="input-row-1">
-										<div class="input-wrap">
-											<input type="text" placeholder="Number">
-											<span class="required">*</span>
-										</div>
-									</div>
-									<div class="input-row-1">
-										<div class="input-wrap">
-											<input type="text" placeholder="MM">
-											<span class="required">*</span>
-										</div>
-									</div>
-									<div class="input-row-1">
-										<div class="input-wrap">
-											<input type="text" placeholder="YYYY">
-											<span class="required">*</span>
-										</div>
-									</div>
-									<div class="input-row-1">
-										<div class="input-wrap">
-											<input type="text" placeholder="CVV">
-											<span class="required">*</span>
-										</div>
-									</div>
+									<div  data-recurly="number" id ="number"></div>
+									<div  data-recurly="month" id="month"></div>
+									<div  data-recurly="year" id="year"></div>
+									<div  data-recurly="cvv" id="cvv"></div>
+
 									<div id="monthly-charges" style="display: none;">
 										<div class="monthly-charge-breakdown">
 											<span class="currency">$</span>
@@ -234,8 +218,14 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> <!--.cc-payment-info -->
+
 							<div class="text-center">
+								<input type="hidden" name="country" data-recurly="country" value="US" />
+	                            <input type="hidden" name="recurly-token" data-recurly="token" />
+	                            <input id="RecurlyToken" name="RecurlyToken" type="hidden" value="" />
+	                            <input data-val="true" data-val-required="The SelectedPlanId field is required." id="SelectedPlanId" name="SelectedPlanId" type="hidden" value="0" />
+	                            <input data-val="true" data-val-required="The TimeZoneOffset field is required." id="TimeZoneOffset" name="TimeZoneOffset" type="hidden" value="0" />
 								<button type="button" class="theme-btn">Submit</button>	
 							</div>
 						</form>

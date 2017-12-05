@@ -19,16 +19,17 @@ function ds_ct_enqueue_parent() { wp_enqueue_style( 'parent-style', get_template
 
 
 function ds_ct_loadjs() {
-
+	wp_register_script( 'recurly', 'https://js.recurly.com/v4/recurly.js');
 	wp_enqueue_script( 'ds-theme-script', get_stylesheet_directory_uri() . '/ds-script.js',
 
         array( 'jquery' )
 
-    );
+	);
+	if ( is_page_template('pricing.php') ) {
+        wp_enqueue_script('pricing-script', get_stylesheet_directory_uri() . '/pricing.js',array('recurly'),'1.1',True);
+    } 
 
 }
-
-
 
 add_action( 'wp_enqueue_scripts', 'ds_ct_enqueue_parent' );
 
@@ -42,17 +43,3 @@ function wordpress_dd($data){
 }
 $stylesheet_directory =  get_stylesheet_directory();
 require_once( $stylesheet_directory . '/includes/subscriptions.api.php' );
-
-function arphabet_widgets_init() {
-
-	register_sidebar( array(
-		'name'          => 'Home right sidebar',
-		'id'            => 'home_right_1',
-		'before_widget' => '<div>',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h2 class="rounded">',
-		'after_title'   => '</h2>',
-	) );
-
-}
-add_action( 'widgets_init', 'arphabet_widgets_init' );
