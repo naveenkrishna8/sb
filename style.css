@@ -316,7 +316,7 @@ input:checked + .switch-slider:before {
 }
 
 .payment-header {
-    background-color: #1c81c5;
+    background-color: #01a6de;
     color: #fff;
     padding: 15px;
 }
