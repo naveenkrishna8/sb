@@ -599,51 +599,6 @@ input:checked + .switch-slider:before {
 	text-transform: none;
 }
 
-/* Hubspot form */
-
-.hbspt-form {
-    width: 500px;
-    max-width: 100%;
-    margin: 0 auto;
-}
-.hs-form .hs-form-field>label {
-    display: none;
-}
-.hs-form input[type="text"], .hs-form input[type="email"], .hs-form input[type="tel"] {
-    width: 100% !important;
-    display: block;
-    margin: 0 auto;
-    padding: 12px;
-    margin-bottom: 2%;
-    border: 2px solid #fdbe1f;
-    max-width: 100% !important;
-}
-
-.hs-form .hs-button{
-    display: inline-block;
-    border-radius: 2px;
-    text-transform: uppercase;
-    color: #fdbe1f;
-    border: 2px solid #fdbe1f;
-    padding: 0.3em 1em;
-    background-color: transparent;
-    font-size: 20px;
-    font-weight: 500;
-    line-height: 1.7em!important;
-    transition: all .2s;
-}
-
-.hs-form .hs-button:hover{
-    color: #ffffff!important;
-    background: #fdbe1f!important;
-    border-color: #fdbe1f!important;
-    border-radius: 2px;
-}
-
-.hs-form .actions {
-    text-align: center;
-}
-
 #text-slider.et_pb_slider_0.et_pb_slider .et_pb_slide_description .et_pb_slide_title{
     text-shadow: none;
 }

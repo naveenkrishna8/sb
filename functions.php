@@ -16,6 +16,10 @@ define('BILLING_MONTHLY','month');
 
 function ds_ct_enqueue_parent() { wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' ); }
 
+function child_stylesheets(){
+	wp_enqueue_style( 'hubspot-style', get_stylesheet_directory_uri() . '/salesboost-hubspot.css' );
+}
+
 
 
 function ds_ct_loadjs() {
@@ -32,6 +36,8 @@ function ds_ct_loadjs() {
 }
 
 add_action( 'wp_enqueue_scripts', 'ds_ct_enqueue_parent' );
+
+add_action( 'wp_enqueue_scripts', 'child_stylesheets' );
 
 add_action( 'wp_enqueue_scripts', 'ds_ct_loadjs' );
 
