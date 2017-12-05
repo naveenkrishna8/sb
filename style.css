@@ -664,3 +664,11 @@ input:checked + .switch-slider:before {
 .payment-section{
     width: 75%;
 }
+.et_font{
+    font-family: ETmodules;
+    display: inline-block;
+    vertical-align: middle;
+}
+.theme-color{
+    color: #1c81c5;
+}

@@ -263,8 +263,10 @@
 					</div>
 					<div class="payment-body">
 						<p class="text-center">For invoicing please contact our customer service directly.</p>
-						<h4 class="text-center">(972) 521-9500</h4>
-						<p class="text-center"><a href="mailto:sales@salesboost.com?subject=Sales">sales@salesboost.com</a></p>
+						<br>
+						<h4 class="text-center"><span class="et_font theme-color">&#xe090;</span> (972) 521-9500</h4>
+						<br>
+						<h4 class="text-center"><span class="et_font theme-color">&#xe076;</span> <a href="mailto:sales@salesboost.com?subject=Sales">sales@salesboost.com</a></h4>
 					</div>
 				</div>					
 				
