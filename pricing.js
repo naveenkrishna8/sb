@@ -3,7 +3,7 @@
     publicKey: 'ewr1-Av43hbhS0Jky7BGksuoFSk',
     style: {
         all: {
-            fontSize: '16px',
+            fontSize: '14px',
             lineHeight: '1em',
         },
         number: {

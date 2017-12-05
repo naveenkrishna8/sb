@@ -334,11 +334,22 @@ input:checked + .switch-slider:before {
     padding: 15px;
 }
 
-.input-wrap input {
+.input-wrap input, .recurly-hosted-field {
     height: 32px;
     width: 100%;
     border-radius: 4px;
     padding: 0 5px 0 15px;
+}
+.recurly-hosted-field{
+    border: 1px solid #bbb;
+    background-color: #fff;
+}
+.recurly-hosted-field:before{
+    content: '*';
+    color: red;
+    position: absolute;
+    left: 5px;
+    top: 6px;
 }
 
 .payment-body form {
@@ -354,7 +365,7 @@ input:checked + .switch-slider:before {
     margin: 0 -15px;
 }
 
-.input-wrap {
+.input-wrap, .recurly-hosted-field {
     padding: 0 15px;
     position: relative;
     margin-bottom: 15px;

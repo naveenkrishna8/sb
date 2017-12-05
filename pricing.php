@@ -190,10 +190,10 @@
 								</div>
 								<!-- cc-payment-info-->
 								<div class="cc-payment-info">
-									<div  data-recurly="number" id ="number"></div>
-									<div  data-recurly="month" id="month"></div>
-									<div  data-recurly="year" id="year"></div>
-									<div  data-recurly="cvv" id="cvv"></div>
+									<div class="recurly-field" data-recurly="number" id ="number"></div>
+									<div class="recurly-field" data-recurly="month" id="month"></div>
+									<div class="recurly-field" data-recurly="year" id="year"></div>
+									<div class="recurly-field" data-recurly="cvv" id="cvv"></div>
 
 									<div id="monthly-charges" style="display: none;">
 										<div class="monthly-charge-breakdown">
