@@ -18,9 +18,14 @@
 	<div class="container">
 	<?php $data = getSubscriptionPlans(); ?>
 		<div id="content-area" class="clearfix">
-
+		<?php if(!empty($_GET['success'])){ ?>
+			<div class="success-mgs">Payment Success.Please check mail for transaction details.</div>
+		<?php }?>
+		<?php if(isset($_GET['success']) && $_GET['success'] == 0){ ?>
+			<div class="error-mgs">Payment Failed.<?php echo isset($_GET['message'])? $_GET['message'] :""; ?></div>
+		<?php }?>
 			<div class="flex-wrapper individuals">
-
+			<?php if($data['status']){ ?>
 				<div class="features">
 					<div class="feature-header">
 						<span>Features</span>
@@ -72,7 +77,7 @@
 							<?php } ?>
 						</ul>
 						<div class="button-wrap">
-							<button type="button" class="signup-btn theme-btn">Get Started</button>
+							<button id="<?php echo $plans->Id; ?>" type="button" class="signup-btn theme-btn month-btn">Get Started</button>
 							<button type="button" class="back-btn">Back to Plans</button>	
 						</div>
 					</div>
@@ -113,7 +118,7 @@
 							<?php } ?>
 						</ul>
 						<div class="button-wrap">
-							<button type="button" class="signup-btn theme-btn">Get Started</button>
+							<button id="<?php echo $plans->Id; ?>" type="button" class="signup-btn theme-btn yearly-btn">Get Started</button>
 							<button type="button" class="back-btn">Back to Plans</button>	
 						</div>
 					</div>
@@ -127,7 +132,9 @@
 					</div>
 					<div class="payment-body">
 						<p class="text-center">Start using Salesboost now! Fill out the form below with your payment information and start using Salesboost today:</p>
-						<form id="payment-from" method="POST">
+						<form id="payment-form" method="POST" action="<?php echo admin_url( 'admin-post.php' ) ?>">
+							<input type="hidden" name="action" value="process_payment">
+							<?php wp_nonce_field('process_payment_action'); ?>
 							<div class="flex-wrapper">
 								<div class="payment-info">
 									<div class="input-row-2">
@@ -226,14 +233,14 @@
 	                            <input id="RecurlyToken" name="RecurlyToken" type="hidden" value="" />
 	                            <input data-val="true" data-val-required="The SelectedPlanId field is required." id="SelectedPlanId" name="SelectedPlanId" type="hidden" value="0" />
 	                            <input data-val="true" data-val-required="The TimeZoneOffset field is required." id="TimeZoneOffset" name="TimeZoneOffset" type="hidden" value="0" />
-								<button type="button" class="theme-btn">Submit</button>	
+								<button type="Submit" class="theme-btn">Submit</button>	
 							</div>
 						</form>
 					</div>
 				</div>				
 				
 			</div>
-
+		<?php } ?>
 			
 		</div> <!-- #content-area -->
 	</div> <!-- .container -->
