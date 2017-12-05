@@ -672,3 +672,7 @@ input:checked + .switch-slider:before {
 .theme-color{
     color: #1c81c5;
 }
+.payment-body h4 {
+    font-size: 20px;
+    font-weight: normal;
+}
