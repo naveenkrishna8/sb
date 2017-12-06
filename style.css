@@ -631,3 +631,25 @@ input:checked + .switch-slider:before {
     font-size: 20px;
     font-weight: normal;
 }
+.success-mgs {
+    width: 500px;
+    margin: 0 auto 20px;
+    border: solid 1px #00981b;
+    text-align: center;
+    background-color: #d9ffe0;
+    padding: 5px;
+    border-radius: 5px;
+    color: #006712;
+}
+.success-mgs, .error-mgs{
+    width: 500px;
+    margin: 0 auto 20px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+.error-mgs {
+    color: red;
+    border: solid 1px red;
+    background-color: #ffe6e6;
+}

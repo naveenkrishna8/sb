@@ -18,7 +18,7 @@
 	<div class="container">
 	<?php $data = getSubscriptionPlans(); ?>
 		<div id="content-area" class="clearfix">
-			<?php displayMessages(); ?>
+			<?php echo displayMessages(); ?>
 			<div class="flex-wrapper individuals">
 			<?php if($data['status']){ ?>
 				<div class="features">
