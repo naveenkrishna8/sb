@@ -275,5 +275,7 @@
 
 
 </div> <!-- #main-content -->
-
+<script type="text/javascript">
+	var public_key = <?php echo RECURLY_OPENSSL_PATH; ?>
+</script>
 <?php get_footer(); ?>

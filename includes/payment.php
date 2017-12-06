@@ -2,8 +2,8 @@
 require_once('recurly-client-php-master/lib/recurly.php');
 
 // Required for the API
-Recurly_Client::$subdomain = 'salesboost-local';
-Recurly_Client::$apiKey = 'c80020769e1e4cfdb301ce4d2e0a5062';
+Recurly_Client::$subdomain = RECURLY_SUBDOMAIN;
+Recurly_Client::$apiKey = RECURLY_API_KEY;
 
 /**
 * Payment Function
@@ -105,8 +105,6 @@ function displayMessages(){
 			$msg = isset($_SESSION['payment_message'])? $_SESSION['payment_message']:"";
 			$message = '<div class="error-mgs">Payment Failed.' .$msg. '</div>';
 		}
-	}else{
-		echo "No";
 	}
 	unset($_SESSION['payment_status']);
 	unset($_SESSION['payment_message']);

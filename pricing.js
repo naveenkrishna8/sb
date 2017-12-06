@@ -1,6 +1,6 @@
  // Recurly configuration
  recurly.configure({
-    publicKey: 'ewr1-Av43hbhS0Jky7BGksuoFSk',
+    publicKey: public_key,
     style: {
         all: {
             fontSize: '14px',
