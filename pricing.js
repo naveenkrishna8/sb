@@ -28,8 +28,7 @@ jQuery('#payment-form').on('submit', function (event) {
     event.preventDefault();
     recurly.token(form, function (err, token) {
     if (err) {
-      // handle error using err.code and err.fields
-      console.log(err);
+        alert(err.message);
     } else {
         jQuery("#RecurlyToken").attr('value', token.id);
         jQuery("#TimeZoneOffset").val(((new Date()).getTimezoneOffset() * -100) / 60);
