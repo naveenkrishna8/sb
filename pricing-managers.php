@@ -15,6 +15,7 @@
 			<?php endwhile; ?>
 	<div class="container">
 	<?php $data = getSubscriptionPlans(false); ?>
+	<?php $discount_array = array('Discounts for On-line Events','Discounts for Regional Networking & Training Events'); ?>									
 		<div id="content-area" class="clearfix">
 			<?php echo displayMessages(); ?>
 			<h2 class="text-center">Select the best pricing model for your business</h2>
@@ -78,7 +79,17 @@
 						<?php foreach($data['monthly_plans']['desc'] as $key=>$desc ){ ?>
 							<?php if($desc[$plans->Level]){ ?>
 								<li>
-								<span aria-hidden="true" class="icon_check"></span>
+								<!-- Custom code -->								
+								<?php if(in_array(trim($key),$discount_array)){ ?>
+									<?php if('Basic'==$plans->Level){ ?>
+										<p>Discount</p>
+									<?php }else{ ?>
+										<p>Free</p>
+									<?php } ?>
+								<?php }else{ ?>
+									<span aria-hidden="true" class="icon_check"></span>
+								<?php } ?>
+								<!-- end Custom code -->
 								<span><?php echo $key; ?></span>
 							</li>
 							<?php }else{ ?>
@@ -119,7 +130,17 @@
 						<?php foreach($data['yearly_plans']['desc'] as $key=>$desc ){ ?>
 							<?php if($desc[$y_plans->Level]){ ?>
 								<li>
-								<span aria-hidden="true" class="icon_check"></span>
+								<!-- Custom code -->
+								<?php if(in_array(trim($key),$discount_array)){ ?>
+									<?php if('Basic' == $y_plans->Level){ ?>
+										<p>Discount</p>
+									<?php }else{ ?>
+										<p>Free</p>
+									<?php } ?>
+								<?php }else{ ?>
+									<span aria-hidden="true" class="icon_check"></span>
+								<?php } ?>
+								<!-- end Custom code -->
 								<span><?php echo $key; ?></span>
 							</li>
 							<?php }else{ ?>
@@ -128,7 +149,7 @@
 						<?php } ?>
 					</ul>
 					<div class="button-wrap">
-						<button id="<?php echo $plans->Id; ?>" type="button" class="signup-btn theme-btn yearly-btn">Get Started</button>
+						<button id="<?php echo $y_plans->Id; ?>" type="button" class="signup-btn theme-btn yearly-btn">Get Started</button>
 						<button type="button" class="back-btn">Back to Plans</button>	
 					</div>
 				</div>
