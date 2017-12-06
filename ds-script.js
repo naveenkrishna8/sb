@@ -104,6 +104,7 @@ jQuery(document).ready(function($) {
 				jQuery('#yearly-charges .centsY').html('.00');
 			}
 
+			jQuery("#SelectedPlanId").val($(this).attr('id'));
 			jQuery(tableWrapper).addClass('payment-mode');
 			jQuery('.custom-pricing-table').removeClass('active');
 			jQuery(currentTable).addClass('active');
@@ -117,12 +118,14 @@ jQuery(document).ready(function($) {
 			jQuery('#monthly-charges .dollarsX3').html(planPriceX3 * teamSize);
 			jQuery('#monthly-charges .dollars').html(planPrice * teamSize);
 			jQuery('#yearly-charges .dollarsY').html(planPriceYearly * teamSize);
+			jQuery('#TeamSize').val(teamSize);
 		});
 
 
 		jQuery('.back-btn').on('click', function(){
 			var tableWrapper = jQuery(this).parents()[2];
 			var currentTable = jQuery(this).parents()[1];
+			jQuery("#SelectedPlanId").val(0);
 			jQuery(tableWrapper).removeClass('payment-mode');
 			jQuery('.custom-pricing-table').removeClass('active');
 		});
