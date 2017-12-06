@@ -1,8 +1,13 @@
 <?php
 
+/**
+* Get subscription details
+*/
 function getSubscriptionPlans($isIndividual=true){
     try{
         $result_data = array();
+
+        // Api call
         $plans = getData($isIndividual);
         if(!empty($plans)){
             $yearly_plans = array();
@@ -106,6 +111,9 @@ function getSubscriptionPlans($isIndividual=true){
     return $result_data;
 }
 
+/*
+* Get feature List
+*/
 function getFeatureList($descriptions, $level){
     $descriptions_array = explode('</li>',$descriptions);
     $descriptions_arrays = array();
@@ -124,6 +132,9 @@ function getFeatureList($descriptions, $level){
     return $descriptions_arrays;
 }
 
+/*
+* Get feature list for sidebar
+*/
 function getFeatureList2($descriptions){    
     $descriptions_array = explode('</li>',$descriptions);
     $descriptions_arrays = array();
@@ -138,7 +149,9 @@ function getFeatureList2($descriptions){
     return $descriptions_arrays;
 }
 
-
+/**
+* curl request for subscription plans
+*/
 function getData($isIndividual=true){
     $return = array();
     $isIndividual_data = $isIndividual ? "true" : "false";
@@ -159,6 +172,9 @@ function getData($isIndividual=true){
     return $return;
 }
 
+/**
+* Get plan code by plan id
+*/
 function getPlanCodeById($id, $plan_type = TRUE){
     $code = "";
     $plans = getData($plan_type);
