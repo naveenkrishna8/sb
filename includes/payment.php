@@ -2,8 +2,10 @@
 require_once('recurly-client-php-master/lib/recurly.php');
 
 // Required for the API
+Recurly_Client::$CACertPath = 'D:\xampp\php\cacert.pem';
 Recurly_Client::$subdomain = 'salesboost-local';
 Recurly_Client::$apiKey = 'c80020769e1e4cfdb301ce4d2e0a5062';
+
 
 /**
 * Payment Function
