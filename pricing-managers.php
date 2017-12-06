@@ -16,7 +16,7 @@
 	<div class="container">
 	<?php $data = getSubscriptionPlans(false); ?>
 		<div id="content-area" class="clearfix">
-
+			<?php displayMessages(); ?>
 			<h2 class="text-center">Select the best pricing model for your business</h2>
 
 			<div class="pricing-options text-center">

@@ -15,7 +15,7 @@ function process_payment_data() {
 		wp_redirect($_POST['_wp_http_referer']);
 		exit;
 	}
-	// get plan code by plan is
+	// get plan code by plan id
 	$plan_id = !empty($_POST['SelectedPlanId'])? $_POST['SelectedPlanId']:"";
 	$plan_type = !empty($_POST['Type']) && $_POST['Type'] == 'managers'? FALSE: TRUE;	
 	$plan_code = getPlanCodeById($plan_id, $plan_type);
@@ -28,6 +28,7 @@ function process_payment_data() {
 		'email'=> $_POST['Email'],
 		'recurly-token' => $_POST['recurly-token'],
 		'plan_code' => $plan_code,
+		'account_name' => $_POST['AccountName'],
 		'team_size' => empty($_POST['TeamSize'])? 1:$_POST['TeamSize'] 
 		);
 
@@ -60,6 +61,7 @@ function create_account($payment_details){
 	    $subscription->account->first_name = $payment_details['first-name'];
 	    $subscription->account->last_name = $payment_details['last-name'];
 	    $subscription->account->email = $payment_details['email'];
+	    $subscription->account->username = $payment_details['account_name'];
 
 	    // Now we create a bare BillingInfo with a token
 	    $subscription->account->billing_info = new Recurly_BillingInfo();
