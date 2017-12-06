@@ -27,7 +27,7 @@ function ds_ct_loadjs() {
         array( 'jquery' )
 
 	);
-	if ( is_page_template('pricing.php') ) {
+	if ( is_page_template('pricing.php') || is_page_template('pricing-managers.php') ) {
         wp_enqueue_script('pricing-script', get_stylesheet_directory_uri() . '/pricing.js',array('recurly'),'1.1',True);
     } 
 
@@ -40,6 +40,16 @@ add_action( 'wp_enqueue_scripts', 'ds_ct_loadjs' );
 add_action( 'admin_post_nopriv_process_payment', 'process_payment_data' );
 
 add_action( 'admin_post_process_payment', 'process_payment_data' );
+
+function register_my_session()
+{
+  if( !session_id() )
+  {
+    session_start();
+  }
+}
+
+add_action('init', 'register_my_session');
 
 function wordpress_dd($data){
 	print "<pre>";

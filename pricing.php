@@ -18,12 +18,7 @@
 	<div class="container">
 	<?php $data = getSubscriptionPlans(); ?>
 		<div id="content-area" class="clearfix">
-		<?php if(!empty($_GET['success'])){ ?>
-			<div class="success-mgs">Payment Success.Please check mail for transaction details.</div>
-		<?php }?>
-		<?php if(isset($_GET['success']) && $_GET['success'] == 0){ ?>
-			<div class="error-mgs">Payment Failed.<?php echo isset($_GET['message'])? $_GET['message'] :""; ?></div>
-		<?php }?>
+			<?php displayMessages(); ?>
 			<div class="flex-wrapper individuals">
 			<?php if($data['status']){ ?>
 				<div class="features">

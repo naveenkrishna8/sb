@@ -22,6 +22,7 @@
 });
 
 jQuery('#payment-form').on('submit', function (event) {
+    alert("hi");
     var btn = jQuery('#cc-form-submit');
     var form = this;
     var email = jQuery("#Email").val();
