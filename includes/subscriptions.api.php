@@ -1,92 +1,109 @@
 <?php
 
 function getSubscriptionPlans($isIndividual=true){
-    $plans = getData($isIndividual);
-    // wordpress_dd($plans);
-    $yearly_plans = array();
-    $monthly_plans = array();
-    $monthly_descriptions = array(
-        'Basic'=>array(),
-        'Premium'=>array()
-    );
-    $yearly_descriptions = array(
-        'Basic'=>array(),
-        'Premium'=>array()
-    );
+    try{
+        $result_data = array();
+        $plans = getData($isIndividual);
+        if(!empty($plans)){
+            $yearly_plans = array();
+            $monthly_plans = array();
+            $monthly_descriptions = array(
+                'Basic'=>array(),
+                'Premium'=>array()
+            );
+            $yearly_descriptions = array(
+                'Basic'=>array(),
+                'Premium'=>array()
+            );
 
-    $monthly_description_t = array();
-    $yearly_description_t = array();
-    foreach( $plans as $plan ){
-        if(BILLING_YEARLY == $plan->BillingPeriod){
-            array_push($yearly_plans, $plan);
-            if('Basic'==$plan->Level){
-                $yearly_descriptions['Basic'] = array_merge($yearly_descriptions['Basic'], getFeatureList($plan->Description, $plan->Level));
-            }else if('Premium'==$plan->Level){
-                $yearly_descriptions['Premium'] = array_merge($yearly_descriptions['Premium'], getFeatureList($plan->Description, $plan->Level));
+            $monthly_description_t = array();
+            $yearly_description_t = array();
+            foreach( $plans as $plan ){
+                if(BILLING_YEARLY == $plan->BillingPeriod){
+                    array_push($yearly_plans, $plan);
+                    if('Basic'==$plan->Level){
+                        $yearly_descriptions['Basic'] = array_merge($yearly_descriptions['Basic'], getFeatureList($plan->Description, $plan->Level));
+                    }else if('Premium'==$plan->Level){
+                        $yearly_descriptions['Premium'] = array_merge($yearly_descriptions['Premium'], getFeatureList($plan->Description, $plan->Level));
+                    }
+                    $yearly_description_t = array_merge($yearly_description_t, getFeatureList2($plan->Description));
+                    
+                }else if(BILLING_MONTHLY == $plan->BillingPeriod){
+                    array_push($monthly_plans, $plan);
+                    if('Basic'==$plan->Level){
+                        $monthly_descriptions['Basic'] = array_merge($monthly_descriptions['Basic'],getFeatureList($plan->Description, $plan->Level));
+                    }else if('Premium'==$plan->Level){
+                        $monthly_descriptions['Premium'] = array_merge($monthly_descriptions['Premium'],getFeatureList($plan->Description, $plan->Level));
+                    }
+                    $monthly_description_t = array_merge($monthly_description_t, getFeatureList2($plan->Description));
+                }        
             }
-            $yearly_description_t = array_merge($yearly_description_t, getFeatureList2($plan->Description));
-            
-        }else if(BILLING_MONTHLY == $plan->BillingPeriod){
-            array_push($monthly_plans, $plan);
-            if('Basic'==$plan->Level){
-                $monthly_descriptions['Basic'] = array_merge($monthly_descriptions['Basic'],getFeatureList($plan->Description, $plan->Level));
-            }else if('Premium'==$plan->Level){
-                $monthly_descriptions['Premium'] = array_merge($monthly_descriptions['Premium'],getFeatureList($plan->Description, $plan->Level));
-            }
-            $monthly_description_t = array_merge($monthly_description_t, getFeatureList2($plan->Description));
-        }        
-    }
-    $monthly_description_t = array_unique($monthly_description_t);
-    $yearly_description_t = array_unique($yearly_description_t);
+            $monthly_description_t = array_unique($monthly_description_t);
+            $yearly_description_t = array_unique($yearly_description_t);
 
-    $monthly_features = array();
-    foreach($monthly_description_t as $monthly_description_t_item){
-        $monthly_features[$monthly_description_t_item] = array(
-            'Premium'=>0,
-            'Basic'=>0,
-        );
-        foreach($monthly_descriptions['Premium'] as $monthly_descriptions_premium){
-            if($monthly_descriptions_premium['feature'] == $monthly_description_t_item){
-                $monthly_features[$monthly_description_t_item]['Premium'] = $monthly_descriptions_premium['Premium'];
+            $monthly_features = array();
+            foreach($monthly_description_t as $monthly_description_t_item){
+                $monthly_features[$monthly_description_t_item] = array(
+                    'Premium'=>0,
+                    'Basic'=>0,
+                );
+                foreach($monthly_descriptions['Premium'] as $monthly_descriptions_premium){
+                    if($monthly_descriptions_premium['feature'] == $monthly_description_t_item){
+                        $monthly_features[$monthly_description_t_item]['Premium'] = $monthly_descriptions_premium['Premium'];
+                    }
+                }
+                foreach($monthly_descriptions['Basic'] as $monthly_descriptions_premium){
+                    if($monthly_descriptions_premium['feature'] == $monthly_description_t_item){
+                        $monthly_features[$monthly_description_t_item]['Basic'] = $monthly_descriptions_premium['Basic'];
+                    }
+                }
             }
+
+            $yearly_features = array();
+            foreach($yearly_description_t as $yearly_description_t_item){
+                $yearly_features[$yearly_description_t_item] = array(
+                    'Premium'=>0,
+                    'Basic'=>0,
+                );
+                foreach($yearly_descriptions['Premium'] as $yearly_descriptions_premium){
+                    if($yearly_descriptions_premium['feature'] == $yearly_description_t_item){
+                        $yearly_features[$yearly_description_t_item]['Premium'] = $yearly_descriptions_premium['Premium'];
+                    }
+                }
+                foreach($yearly_descriptions['Basic'] as $yearly_descriptions_premium){
+                    if($yearly_descriptions_premium['feature'] == $yearly_description_t_item){
+                        $yearly_features[$yearly_description_t_item]['Basic'] = $yearly_descriptions_premium['Basic'];
+                    }
+                } 
+            }
+
+            $result_data = array(
+                "monthly_plans"=> array (
+                    'plans'=> $monthly_plans,
+                    'desc' => $monthly_features,
+                    'features'=> $monthly_description_t
+                ),
+                "yearly_plans"=> array (
+                    'plans'=> $yearly_plans,
+                    'desc' => $yearly_features,
+                    'features'=> $yearly_description_t
+                ),
+                "message"=> "Success",
+                "status" => 1 
+            );
+        }else{
+            $result_data = array(
+                "message"=> 'Parameter value is Invalid.',
+                "status" => 0 
+            );
         }
-        foreach($monthly_descriptions['Basic'] as $monthly_descriptions_premium){
-            if($monthly_descriptions_premium['feature'] == $monthly_description_t_item){
-                $monthly_features[$monthly_description_t_item]['Basic'] = $monthly_descriptions_premium['Basic'];
-            }
-        }
+    }catch(Exception $e) {
+        $result_data = array(
+                "message"=> $e->getMessage(),
+                "status" => 0 
+            );
     }
-
-    $yearly_features = array();
-    foreach($yearly_description_t as $yearly_description_t_item){
-        $yearly_features[$yearly_description_t_item] = array(
-            'Premium'=>0,
-            'Basic'=>0,
-        );
-        foreach($yearly_descriptions['Premium'] as $yearly_descriptions_premium){
-            if($yearly_descriptions_premium['feature'] == $yearly_description_t_item){
-                $yearly_features[$yearly_description_t_item]['Premium'] = $yearly_descriptions_premium['Premium'];
-            }
-        }
-        foreach($yearly_descriptions['Basic'] as $yearly_descriptions_premium){
-            if($yearly_descriptions_premium['feature'] == $yearly_description_t_item){
-                $yearly_features[$yearly_description_t_item]['Basic'] = $yearly_descriptions_premium['Basic'];
-            }
-        } 
-    }
-
-    return array(
-        "monthly_plans"=> array (
-            'plans'=> $monthly_plans,
-            'desc' => $monthly_features,
-            'features'=> $monthly_description_t
-        ),
-        "yearly_plans"=> array (
-            'plans'=> $yearly_plans,
-            'desc' => $yearly_features,
-            'features'=> $yearly_description_t
-        ), 
-    );
+    return $result_data;
 }
 
 function getFeatureList($descriptions, $level){
@@ -109,8 +126,6 @@ function getFeatureList($descriptions, $level){
 
 function getFeatureList2($descriptions){    
     $descriptions_array = explode('</li>',$descriptions);
-    // var_dump($descriptions_array);
-    // exit;
     $descriptions_arrays = array();
     foreach($descriptions_array as $descriptions_item){
         $descriptions_item = trim($descriptions_item);
@@ -120,7 +135,6 @@ function getFeatureList2($descriptions){
             array_push($descriptions_arrays, $descriptions_item);
         }
     }
-    // wordpress_dd($descriptions_arrays);
     return $descriptions_arrays;
 }
 
@@ -143,5 +157,22 @@ function getData($isIndividual=true){
         $return = !empty($result->Data->Plans)? $result->Data->Plans : array();
     }
     return $return;
+}
+
+function getPlanCodeById($id, $plan_type = TRUE){
+    $code = "";
+    $plans = getData($plan_type);
+    if(!empty($plans)){
+        foreach( $plans as $plan ){
+            if($plan->Id == $id){
+                $code = $plan->RecurlyCode;
+                break;
+            }
+        }
+    }
+    if(empty($code)){
+
+    }
+    return $code;
 }
 

@@ -10,6 +10,8 @@
 
 if (!defined('ABSPATH')) die();
 
+$stylesheet_directory =  get_stylesheet_directory();
+
 define('SUBSCRIPTION_API_URL','http://35.164.133.47:81/Home/GetGeneralPlanSettings?isIndividual=');
 define('BILLING_YEARLY','year');
 define('BILLING_MONTHLY','month');
@@ -41,11 +43,17 @@ add_action( 'wp_enqueue_scripts', 'child_stylesheets' );
 
 add_action( 'wp_enqueue_scripts', 'ds_ct_loadjs' );
 
+add_action( 'admin_post_nopriv_process_payment', 'process_payment_data' );
+
+add_action( 'admin_post_process_payment', 'process_payment_data' );
+
 function wordpress_dd($data){
 	print "<pre>";
 	print_r($data);
 	print "</pre>";
 	exit;
 }
-$stylesheet_directory =  get_stylesheet_directory();
+
 require_once( $stylesheet_directory . '/includes/subscriptions.api.php' );
+
+require_once( $stylesheet_directory . '/includes/payment.php' );

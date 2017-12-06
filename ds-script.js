@@ -47,7 +47,7 @@ jQuery(document).ready(function($) {
 				jQuery('#yearly-charges .dollarsY').html(totalPrice);
 				jQuery('#yearly-charges .centsY').html('.00');
 			}
-
+			jQuery("#SelectedPlanId").val($(this).attr('id'));
 			jQuery(tableWrapper).addClass('payment-mode');
 			jQuery('.custom-pricing-table').removeClass('active');
 			jQuery(currentTable).addClass('active');
@@ -56,6 +56,7 @@ jQuery(document).ready(function($) {
 		jQuery('.back-btn').on('click', function(){
 			var tableWrapper = jQuery(this).parents()[2];
 			var currentTable = jQuery(this).parents()[1];
+			jQuery("#SelectedPlanId").val(0);
 			jQuery(tableWrapper).removeClass('payment-mode');
 			jQuery('.custom-pricing-table').removeClass('active');
 		});
