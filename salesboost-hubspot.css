@@ -12,10 +12,19 @@
     width: 100% !important;
     display: block;
     margin: 0 auto;
-    padding: 12px;
     margin-bottom: 2%;
     border: 2px solid #fdbe1f;
     max-width: 100% !important;
+    height: 40px;
+}
+
+.hs-form input[type="text"], .hs-form input[type="email"], .hs-form input[type="tel"], .hs-form textarea{
+    padding: 5px;
+}
+
+.hs-form input[type="email"]:focus{
+    border-color: #2d3940;
+    color: #3e3e3e;
 }
 
 .hs-form .inputs-list.multi-container {
@@ -50,4 +59,9 @@
 
 .hs-form .actions {
     text-align: center;
+}
+
+.hs-error-msgs li {
+    list-style: none;
+    color: red;
 }
