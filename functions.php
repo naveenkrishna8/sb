@@ -27,6 +27,7 @@ define('RECURLY_PUBLIC_KEY','ewr1-Av43hbhS0Jky7BGksuoFSk');
 define('RECURLY_OPENSSL_PATH','D:\xampp\php\cacert.pem');
 
 
+
 function ds_ct_enqueue_parent() { wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' ); }
 
 function child_stylesheets(){
