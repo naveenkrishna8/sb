@@ -18,7 +18,7 @@
 	<div class="container">
 	<?php $data = getSubscriptionPlans(); ?>
 		<div id="content-area" class="clearfix">
-			<?php displayMessages(); ?>
+			<?php echo displayMessages(); ?>
 			<div class="flex-wrapper individuals">
 			<?php if($data['status']){ ?>
 				<div class="features">
@@ -242,5 +242,7 @@
 
 
 </div> <!-- #main-content -->
-
+<script type="text/javascript">
+	var public_key = '<?php echo RECURLY_OPENSSL_PATH; ?>';
+</script>
 <?php get_footer(); ?>

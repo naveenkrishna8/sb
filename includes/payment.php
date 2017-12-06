@@ -2,9 +2,9 @@
 require_once('recurly-client-php-master/lib/recurly.php');
 
 // Required for the API
-Recurly_Client::$CACertPath = 'D:\xampp\php\cacert.pem';
-Recurly_Client::$subdomain = 'salesboost-local';
-Recurly_Client::$apiKey = 'c80020769e1e4cfdb301ce4d2e0a5062';
+Recurly_Client::$CACertPath = RECURLY_OPENSSL_PATH;
+Recurly_Client::$subdomain = RECURLY_SUBDOMAIN;
+Recurly_Client::$apiKey = RECURLY_API_KEY;
 
 
 /**
@@ -78,6 +78,9 @@ function create_account($payment_details){
 	} catch (Recurly_NotFoundError $e) {
 	  // Could not find account
 	  $data = retunData(0,$e->getMessage());
+	}catch (Exception $e) {
+	  // Could not find account
+	  $data = retunData(0,$e->getMessage());
 	}
 	return $data;
 }
@@ -96,13 +99,16 @@ function retunData($status,$message){
 * Setup success/error message after payment 
 */
 function displayMessages(){
+	$message = "";
 	if(isset($_SESSION['payment_status'])){
 		if($_SESSION['payment_status']){
-			echo '<div class="success-mgs">Payment Success.Please check mail for transaction details.</div>';
+			$message = '<div class="success-mgs">Payment Success.Please check mail for transaction details.</div>';
 		}else{
-			echo '<div class="error-mgs">Payment Failed.'.isset($_SESSION['payment_message'])? $_SESSION['payment_message'] :"".'</div>';
+			$msg = isset($_SESSION['payment_message'])? $_SESSION['payment_message']:"";
+			$message = '<div class="error-mgs">Payment Failed.' .$msg. '</div>';
 		}
 	}
 	unset($_SESSION['payment_status']);
 	unset($_SESSION['payment_message']);
+	return $message;
 }

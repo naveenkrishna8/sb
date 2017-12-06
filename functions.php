@@ -12,9 +12,20 @@ if (!defined('ABSPATH')) die();
 
 $stylesheet_directory =  get_stylesheet_directory();
 
+// Subscription api details
 define('SUBSCRIPTION_API_URL','http://35.164.133.47:81/Home/GetGeneralPlanSettings?isIndividual=');
 define('BILLING_YEARLY','year');
 define('BILLING_MONTHLY','month');
+
+// recurly sub domain
+define('RECURLY_SUBDOMAIN','salesboost-local');
+// recurly api key
+define('RECURLY_API_KEY','c80020769e1e4cfdb301ce4d2e0a5062');
+
+define('RECURLY_PUBLIC_KEY','ewr1-Av43hbhS0Jky7BGksuoFSk');
+
+define('RECURLY_OPENSSL_PATH','D:\xampp\php\cacert.pem');
+
 
 function ds_ct_enqueue_parent() { wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' ); }
 

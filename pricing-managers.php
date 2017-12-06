@@ -16,7 +16,7 @@
 	<div class="container">
 	<?php $data = getSubscriptionPlans(false); ?>
 		<div id="content-area" class="clearfix">
-			<?php displayMessages(); ?>
+			<?php echo displayMessages(); ?>
 			<h2 class="text-center">Select the best pricing model for your business</h2>
 
 			<div class="pricing-options text-center">
@@ -275,5 +275,7 @@
 
 
 </div> <!-- #main-content -->
-
+<script type="text/javascript">
+	var public_key = '<?php echo RECURLY_OPENSSL_PATH; ?>';
+</script>
 <?php get_footer(); ?>
