@@ -2,7 +2,7 @@
 require_once('recurly-client-php-master/lib/recurly.php');
 
 // Required for the API
-Recurly_Client::$CACertPath = RECURLY_OPENSSL_PATH;
+// Recurly_Client::$CACertPath = RECURLY_OPENSSL_PATH;
 Recurly_Client::$subdomain = RECURLY_SUBDOMAIN;
 Recurly_Client::$apiKey = RECURLY_API_KEY;
 
@@ -20,7 +20,7 @@ function process_payment_data() {
 	// get plan code by plan id
 	$plan_id = !empty($_POST['SelectedPlanId'])? $_POST['SelectedPlanId']:"";
 	$plan_type = !empty($_POST['Type']) && $_POST['Type'] == 'managers'? FALSE: TRUE;	
-	$plan_code = getPlanCodeById($plan_id, $plan_type);
+	$plan_details = getPlanCodeById($plan_id, $plan_type);
 	
 	// set api parameters
 	$payment_details = array(
@@ -29,7 +29,8 @@ function process_payment_data() {
 		'unique_value'=> $_POST['Email'],
 		'email'=> $_POST['Email'],
 		'recurly-token' => $_POST['recurly-token'],
-		'plan_code' => $plan_code,
+		'plan_code' => $plan_details['code'],
+		'billing_period' => $plan_details['billing_period'],
 		'account_name' => $_POST['AccountName'],
 		'team_size' => empty($_POST['TeamSize'])? 1:$_POST['TeamSize'] 
 		);
@@ -58,6 +59,14 @@ function create_account($payment_details){
 	    $subscription->currency = 'USD';
 	    $subscription->quantity = $payment_details['team_size'];
 
+	    // for monthly package first payment amount is 3 month cost
+	    if(BILLING_MONTHLY == $payment_details['billing_period']){
+	    	$effectiveDate = date('Y-m-d');
+	    	// $effectiveDate = date('Y-m-d', strtotime("+90 days", strtotime($effectiveDate)));
+	    	$effectiveDate = date('Y-m-d', strtotime("+3 months", strtotime($effectiveDate)));
+	    	$subscription->first_renewal_date = $effectiveDate;
+	    }
+	    
 	    // Create an account with a uniqid and the customer's first and last name
 	    $subscription->account = new Recurly_Account($payment_details['email']);
 	    $subscription->account->first_name = $payment_details['first-name'];

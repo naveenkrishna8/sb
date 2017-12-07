@@ -177,11 +177,13 @@ function getData($isIndividual=true){
 */
 function getPlanCodeById($id, $plan_type = TRUE){
     $code = "";
+    $billing_period = "";
     $plans = getData($plan_type);
     if(!empty($plans)){
         foreach( $plans as $plan ){
             if($plan->Id == $id){
                 $code = $plan->RecurlyCode;
+                $billing_period = $plan->BillingPeriod;
                 break;
             }
         }
@@ -189,6 +191,6 @@ function getPlanCodeById($id, $plan_type = TRUE){
     if(empty($code)){
 
     }
-    return $code;
+    return array('code'=>$code,'billing_period'=>$billing_period);;
 }
 
