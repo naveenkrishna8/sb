@@ -58,14 +58,6 @@ function create_account($payment_details){
 	    $subscription->plan_code = $payment_details['plan_code'];
 	    $subscription->currency = 'USD';
 	    $subscription->quantity = $payment_details['team_size'];
-
-	    // for monthly package first payment amount is 3 month cost
-	    if(BILLING_MONTHLY == $payment_details['billing_period']){
-	    	$effectiveDate = date('Y-m-d');
-	    	// $effectiveDate = date('Y-m-d', strtotime("+90 days", strtotime($effectiveDate)));
-	    	$effectiveDate = date('Y-m-d', strtotime("+3 months", strtotime($effectiveDate)));
-	    	$subscription->first_renewal_date = $effectiveDate;
-	    }
 	    
 	    // Create an account with a uniqid and the customer's first and last name
 	    $subscription->account = new Recurly_Account($payment_details['email']);
