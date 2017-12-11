@@ -2,7 +2,7 @@
 require_once('recurly-client-php-master/lib/recurly.php');
 
 // Required for the API
-// Recurly_Client::$CACertPath = RECURLY_OPENSSL_PATH;
+Recurly_Client::$CACertPath = RECURLY_OPENSSL_PATH;
 Recurly_Client::$subdomain = RECURLY_SUBDOMAIN;
 Recurly_Client::$apiKey = RECURLY_API_KEY;
 
