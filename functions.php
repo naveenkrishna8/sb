@@ -13,7 +13,7 @@ if (!defined('ABSPATH')) die();
 $stylesheet_directory =  get_stylesheet_directory();
 
 // Subscription api details
-define('SUBSCRIPTION_API_URL','http://35.164.133.47:81/Home/GetGeneralPlanSettings?isIndividual=');
+define('SUBSCRIPTION_API_URL','https://qa.salesboost.com/Home/GetGeneralPlanSettings?isIndividual=');
 define('BILLING_YEARLY','year');
 define('BILLING_MONTHLY','month');
 
