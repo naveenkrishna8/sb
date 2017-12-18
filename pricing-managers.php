@@ -38,7 +38,7 @@
 			</div>
 
 			<div class="flex-wrapper managers">
-
+				<?php if($data['status']){ ?>
 				<div class="features">
 					<div class="feature-header">
 						<span>Features</span>
@@ -280,7 +280,7 @@
 						<h4 class="text-center"><span class="et_font theme-color">&#xe076;</span> <a href="mailto:sales@salesboost.com?subject=Sales">sales@salesboost.com</a></h4>
 					</div>
 				</div>					
-				
+				<?php } ?>
 			</div>
 
 			

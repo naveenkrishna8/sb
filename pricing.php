@@ -254,9 +254,9 @@
 						</form>
 					</div>
 				</div>				
-				
+				<?php } ?>
 			</div>
-		<?php } ?>
+		
 			
 		</div> <!-- #content-area -->
 	</div> <!-- .container -->
