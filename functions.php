@@ -14,6 +14,7 @@ $stylesheet_directory =  get_stylesheet_directory();
 
 // Subscription api details
 define('SUBSCRIPTION_API_URL','https://qa.salesboost.com/Home/GetGeneralPlanSettings?isIndividual=');
+define('SUBSCRIPTION_API_CERTPATH', $stylesheet_directory.'/certificates/cacert.pem');
 define('BILLING_YEARLY','year');
 define('BILLING_MONTHLY','month');
 
@@ -24,7 +25,7 @@ define('RECURLY_API_KEY','c80020769e1e4cfdb301ce4d2e0a5062');
 
 define('RECURLY_PUBLIC_KEY','ewr1-Av43hbhS0Jky7BGksuoFSk');
 
-define('RECURLY_OPENSSL_PATH','D:\xampp\php\cacert.pem');
+define('RECURLY_OPENSSL_PATH', $stylesheet_directory.'/certificates/rcacert.pem');
 
 
 

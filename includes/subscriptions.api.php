@@ -153,6 +153,7 @@ function getFeatureList2($descriptions){
 * curl request for subscription plans
 */
 function getData($isIndividual=true){
+    $cert_file = SUBSCRIPTION_API_CERTPATH;
     $return = array();
     $isIndividual_data = $isIndividual ? "true" : "false";
     $url = SUBSCRIPTION_API_URL . $isIndividual_data;
@@ -161,14 +162,18 @@ function getData($isIndividual=true){
     );
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST, 0);
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_CAINFO, $cert_file); 
     $result = curl_exec($ch);
     curl_close($ch);
+    
     $result = json_decode($result);
     if(!empty($result->Status) && $result->Status){
         $return = !empty($result->Data->Plans)? $result->Data->Plans : array();
     }
+
     return $return;
 }
 

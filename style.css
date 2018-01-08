@@ -15,6 +15,7 @@
 
 #main-header {
     z-index: 99;
+    box-shadow: none;
 }
 
 .custom-main{
@@ -520,7 +521,7 @@ input:checked + .switch-slider:before {
 }
 
 .footer-widget .widget_media_image:before {
-    content: url(http://35.164.133.47:9090/salesboost/wp-content/uploads/2017/11/footer-cloud.png);
+    content: url(/wp-content/uploads/2017/11/footer-cloud.png);
     position: absolute;
     top: -55px;
 }
@@ -652,4 +653,84 @@ input:checked + .switch-slider:before {
     color: red;
     border: solid 1px red;
     background-color: #ffe6e6;
+}
+
+
+.parallax {
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: -2;
+    pointer-events: none;
+}
+.wcloud {
+    background: url(clouds/clouds4.0.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: fixed;
+    top: 2200px;
+    z-index: -1;
+    height: 400px;
+}
+.cloud1 {
+    background: url(clouds/cloud1.png);
+    background-repeat: no-repeat;
+    top: 700px;
+    opacity: .1;
+    height: 119px;
+}
+.cloud2 {
+    background: url(clouds/cloud2.png);
+    background-repeat: no-repeat;
+    background-position-x: 90%;
+    top: 400px;
+    opacity: .1;
+    height: 109px;
+}
+.cloud3 {
+    background: url(clouds/cloud4.png);
+    background-repeat: no-repeat;
+    background-position-x: 90%;
+    top: 1600px;
+    opacity: .1;
+    height: 93px;
+}
+.cloud4 {
+    background: url(clouds/cloud5.png);
+    background-repeat: no-repeat;
+    background-position-x: 10%;
+    top: 1800px;
+    opacity: .1;
+    height: 69px;
+}
+.cloud5 {
+    background: url(clouds/cloud3.png);
+    background-repeat: no-repeat;
+    height: 92px;
+    top: 2400px;
+    opacity: .1;
+}
+.cloud6 {
+    background: url(clouds/cloud2.png);
+    background-repeat: no-repeat;
+    background-position-x: 90%;
+    top: 2200px;
+    opacity: .1;
+    height: 109px;
+}
+.cloud7 {
+    background: url(clouds/cloud1.png);
+    background-repeat: no-repeat;
+    background-position-x: 80%;
+    height: 92px;
+    top: 3800px;
+    opacity: .1;
+}
+body{
+    background-image: url(clouds/mClouds.png);
+    background-position-y: 135px;
+    background-position-x: center;
+    background-repeat: no-repeat;
+    background-size: contain;
 }

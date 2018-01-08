@@ -132,4 +132,29 @@ jQuery(document).ready(function($) {
 
 	}
 
+	function parallaxclouds() {
+        var scrolltop = window.pageYOffset // get number of pixels document has scrolled vertically
+
+        $(".parallax").each(function (index) {
+            var speed = parseFloat($(this).data('scrollspeed'));
+            var otop = parseFloat($(this).data('originaltop'));
+            var newtop = otop - (scrolltop * speed);
+            //window.Console(newtop + " = "+otop + " - ("+ scrolltop + " * "+ speed+")");
+            $(this).css({ top: newtop + 'px' });
+        });
+    }
+
+    $(".parallax").each(function (index) {
+        var position = $(this).position();
+        $(this).attr('data-originaltop', position.top);
+    });
+
+
+    ////////////////////////////////////////////
+    // Event handlers
+    ///////////////////////////////////////////
+    $(window).scroll(parallaxclouds);
+
+    parallaxclouds();
+
 });

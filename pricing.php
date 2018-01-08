@@ -189,7 +189,6 @@
 									<div class="input-row-1">
 										<div class="input-wrap">
 											<input type="text" name="address2" placeholder="Unit/Apartment/Building Number" data-recurly="address2">
-											<span class="required">*</span>
 										</div>
 									</div>
 									<div class="input-row-1">
